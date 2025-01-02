@@ -8,11 +8,14 @@ function App() {
     const dispatch = useAppDispatch();
     const count = useSelector((state: rootState) => state.count);
 
-    const handelIncrement = () => {
-        dispatch(increment());
+    // increment
+    const handelIncrement = (payLoad: number) => {
+        dispatch(increment(payLoad));
     };
-    const handelDecrement = () => {
-        dispatch(decrement());
+
+    // decrement
+    const handelDecrement = (payLoad: number) => {
+        dispatch(decrement(payLoad));
     };
 
     return (
@@ -21,8 +24,11 @@ function App() {
             <div className="card">
                 <h2>count is {count}</h2>
 
-                <button onClick={handelIncrement} >Increment</button>
-                <button onClick={handelDecrement}>Decrement</button>
+                <button onClick={() => handelIncrement(5)}>Increment 5</button>
+                <button onClick={() => handelIncrement(1)}>Increment</button>
+
+                <button onClick={() => handelDecrement(1)}>Decrement</button>
+                <button onClick={() => handelDecrement(5)}>Decrement 5</button>
             </div>
         </>
     )
