@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { decrement, increment } from './redux/features/counter/counterSlice';
 import { rootState } from './redux/store';
 import { useAppDispatch } from './redux/hook';
+import { Button } from './components/ui/button';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -24,11 +25,11 @@ function App() {
             <div className="card">
                 <h2>count is {count}</h2>
 
-                <button onClick={() => handelIncrement(5)}>Increment 5</button>
-                <button onClick={() => handelIncrement(1)}>Increment</button>
+                <Button onClick={() => handelIncrement(5)}>Increment 5</Button>
+                <Button onClick={() => handelIncrement(1)}>Increment</Button>
 
-                <button onClick={() => handelDecrement(1)}>Decrement</button>
-                <button onClick={() => handelDecrement(5)}>Decrement 5</button>
+                <Button onClick={() => handelDecrement(1)}>Decrement</Button>
+                <Button onClick={() => handelDecrement(5)}>Decrement 5</Button>
             </div>
         </>
     )
