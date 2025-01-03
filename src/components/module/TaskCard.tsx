@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { ITask } from "@/types";
 
 const TaskCard = (task :ITask) => {
-    const { title, description, dueDate, priority, updatedAt, isCompleted } = task;
+    const { title, description, dueDate, priority, isCompleted } = task;
 
     return (
         <div
@@ -21,9 +21,9 @@ const TaskCard = (task :ITask) => {
                 <p>
                     <strong className="text-gray-700">Priority:</strong> {priority}
                 </p>
-                <p>
+                {/* <p>
                     <strong className="text-gray-700">Last Updated:</strong> {new Date(updatedAt).toLocaleString()}
-                </p>
+                </p> */}
             </div>
             <div className="flex justify-between">
                 <button

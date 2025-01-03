@@ -16,8 +16,6 @@ const initialState : ITaskState = {
             dueDate: '2025-01-31',
             isCompleted: false,
             priority: 'medium',
-            createdAt: '',
-            updatedAt: '',
         },
         {
             id: 'id-02',
@@ -26,8 +24,6 @@ const initialState : ITaskState = {
             dueDate: '2025-01-31',
             isCompleted: false,
             priority: 'high',
-            createdAt: '',
-            updatedAt: '',
         },
         {
             id: 'id-03',
@@ -36,8 +32,6 @@ const initialState : ITaskState = {
             dueDate: '2025-01-31',
             isCompleted: false,
             priority: 'medium',
-            createdAt: '',
-            updatedAt: '',
         },
         {
             id: 'id-04',
@@ -46,8 +40,6 @@ const initialState : ITaskState = {
             dueDate: '2025-01-31',
             isCompleted: false,
             priority: 'low',
-            createdAt: '',
-            updatedAt: '',
         }
     ],
     filter : 'all',
