@@ -6,9 +6,10 @@ function App() {
 
     return (
         <>
-        <Navbar />
-        <h1>Learning Redux</h1>
-        <Outlet />
+            <Navbar />
+            <div className='max-w-7xl mx-auto pt-10'>
+                <Outlet />
+            </div>
         </>
     )
 };
