@@ -4,6 +4,7 @@ import { decrement, increment } from './redux/features/counter/counterSlice';
 import { rootState } from './redux/store';
 import { useAppDispatch } from './redux/hook';
 import { Button } from './components/ui/button';
+import Navbar from './components/layout/Navbar';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ function App() {
 
     return (
         <>
+        <Navbar />
             <h1>Learning Redux</h1>
             <div className="card">
                 <h2>count is {count}</h2>
