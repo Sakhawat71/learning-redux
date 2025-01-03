@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/providers/mode-toggle";
 
 const Navbar = () => {
     return (
@@ -8,6 +9,9 @@ const Navbar = () => {
                     alt="logo"
                     className="ml-5 w-full h-full"
                 />
+            </div>
+            <div className=" ml-auto" >
+                <ModeToggle />
             </div>
         </nav>
     );
