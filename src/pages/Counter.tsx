@@ -6,7 +6,7 @@ import { rootState } from "@/redux/store";
 
 const Counter = () => {
     const dispatch = useAppDispatch();
-    const count = useAppSelector((state: rootState) => state.count);
+    const count = useAppSelector((state: rootState) => state.counter.count);
 
     // increment
     const handelIncrement = (payLoad: number) => {
