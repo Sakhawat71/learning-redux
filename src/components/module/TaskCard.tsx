@@ -2,14 +2,14 @@ import { cn } from "@/lib/utils";
 import { ITask } from "@/types";
 
 const TaskCard = (task :ITask) => {
-    const { id, title, description, dueDate, priority, updatedAt, isCompleted } = task;
+    const { title, description, dueDate, priority, updatedAt, isCompleted } = task;
 
     return (
         <div
             className={cn("p-4 border rounded-lg shadow-md transition-transform transform hover:scale-105 m-10", {
                 "bg-red-200": priority === 'high',
                 "bg-green-200": priority === 'medium',
-                "bg-blue-200": priority === 'low',
+                "bg-yellow-200": priority === 'low',
             })}
         >
             <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
