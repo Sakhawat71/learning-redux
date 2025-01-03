@@ -1,5 +1,6 @@
 import App from "@/App";
 import Counter from "@/pages/Counter";
+import Tasks from "@/pages/Tasks";
 import { createBrowserRouter } from "react-router-dom";
 
 const routes = createBrowserRouter([
@@ -8,7 +9,11 @@ const routes = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "/counter",
+                index : true,
+                element: <Tasks />
+            },
+            {
+                path: "counter",
                 element: <Counter />
             }
         ]
