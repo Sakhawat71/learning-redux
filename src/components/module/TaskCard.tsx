@@ -21,9 +21,7 @@ const TaskCard = (task :ITask) => {
                 <p>
                     <strong className="text-gray-700">Priority:</strong> {priority}
                 </p>
-                {/* <p>
-                    <strong className="text-gray-700">Last Updated:</strong> {new Date(updatedAt).toLocaleString()}
-                </p> */}
+                
             </div>
             <div className="flex justify-between">
                 <button

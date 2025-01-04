@@ -1,10 +1,21 @@
 import { rootState } from "@/redux/store";
 import { ITask } from "@/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 interface ITaskState {
     tasks : ITask[];
     filter : 'all' | 'high' | 'medium' | 'low';
+};
+
+// type DraftTask = Partial<ITask>;
+type DraftTask = Pick<ITask, 'title' | 'description' | 'dueDate' | 'priority'>;
+
+const createTask = (draftTask : DraftTask) : ITask => {
+    return {
+        id: nanoid(),
+        isCompleted: false,
+        ...draftTask,
+    };
 };
 
 const initialState : ITaskState = {
@@ -27,13 +38,7 @@ const taskSlice = createSlice({
     reducers: {
         addTask: (state, action : PayloadAction<ITask>) => {
             console.log(action.payload);
-            const id = Math.random().toString(36).substr(2, 9);
-
-            const taskData = {
-                ...action.payload,
-                isCompleted: false,
-                id,
-            }
+            const taskData = createTask(action.payload);
             state.tasks.push(taskData);
         }
     },

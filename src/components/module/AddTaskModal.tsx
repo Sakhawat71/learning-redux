@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
@@ -25,7 +25,7 @@ export function AddTaskModal() {
 
     const dispatch = useAppDispatch();
     const form = useForm();
-    const onSubmit = (payLoad : object) => {
+    const onSubmit: SubmitHandler<FieldValues> = (payLoad) => {
 
         console.log(payLoad);
         dispatch(addTask(payLoad as ITask));
