@@ -1,6 +1,6 @@
 import { rootState } from "@/redux/store";
 import { ITask } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ITaskState {
     tasks : ITask[];
@@ -16,30 +16,6 @@ const initialState : ITaskState = {
             dueDate: '2025-01-31',
             isCompleted: false,
             priority: 'medium',
-        },
-        {
-            id: 'id-02',
-            title: 'Initialize Backend',
-            description: 'create a new express app',
-            dueDate: '2025-01-31',
-            isCompleted: false,
-            priority: 'high',
-        },
-        {
-            id: 'id-03',
-            title: 'Initialize Database',
-            description: 'create a new postgres db',
-            dueDate: '2025-01-31',
-            isCompleted: false,
-            priority: 'medium',
-        },
-        {
-            id: 'id-04',
-            title: 'Initialize Deployment',
-            description: 'deploy the app to heroku',
-            dueDate: '2025-01-31',
-            isCompleted: false,
-            priority: 'low',
         }
     ],
     filter : 'all',
@@ -49,9 +25,16 @@ const taskSlice = createSlice({
     name: 'task',
     initialState,
     reducers: {
-        addTask: (state, action) => {
+        addTask: (state, action : PayloadAction<ITask>) => {
             console.log(action.payload);
-            state.tasks.push(action.payload);
+            const id = Math.random().toString(36).substr(2, 9);
+
+            const taskData = {
+                ...action.payload,
+                isCompleted: false,
+                id,
+            }
+            state.tasks.push(taskData);
         }
     },
 });

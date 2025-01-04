@@ -19,14 +19,16 @@ import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useAppDispatch } from "@/redux/hook";
 import { addTask } from "@/redux/features/task/taskSlice";
+import { ITask } from "@/types";
 
 export function AddTaskModal() {
 
     const dispatch = useAppDispatch();
     const form = useForm();
-    const onSubmit = (data : object) => {
-        console.log(data);
-        dispatch(addTask(data));
+    const onSubmit = (payLoad : object) => {
+
+        console.log(payLoad);
+        dispatch(addTask(payLoad as ITask));
     }
 
     return (
@@ -76,7 +78,7 @@ export function AddTaskModal() {
 
                         <FormField
                             control={form.control}
-                            name="pickDate"
+                            name="dueDate"
                             render={({ field }) => (
                                 <FormItem className="flex flex-col">
                                     <FormLabel>Pick a Date</FormLabel>
@@ -91,7 +93,7 @@ export function AddTaskModal() {
                                                     )}
                                                 >
                                                     {field.value ? (
-                                                        format(field.value, "PPP")
+                                                        format(new Date(field.value), "PPP")
                                                     ) : (
                                                         <span>Pick a date</span>
                                                     )}
@@ -102,17 +104,20 @@ export function AddTaskModal() {
                                         <PopoverContent className="w-auto p-0" align="start">
                                             <Calendar
                                                 mode="single"
-                                                selected={field.value}
-                                                onSelect={field.onChange}
+                                                selected={field.value ? new Date(field.value) : undefined}
+                                                onSelect={(date) => {
+                                                    const formattedDate = date
+                                                        ? date.toISOString().split('T')[0]
+                                                        : null;
+                                                    field.onChange(formattedDate);
+                                                }}
                                                 initialFocus
                                             />
                                         </PopoverContent>
                                     </Popover>
-                                    
                                 </FormItem>
                             )}
                         />
-
 
                         <FormField
                             control={form.control}

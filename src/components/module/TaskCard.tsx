@@ -16,7 +16,7 @@ const TaskCard = (task :ITask) => {
             <p className="text-gray-600 mb-4">{description}</p>
             <div className="text-sm text-gray-500 mb-4">
                 <p>
-                    <strong className="text-gray-700">Due:</strong> {new Date(dueDate).toLocaleDateString()}
+                    <strong className="text-gray-700">Due:</strong> {dueDate}
                 </p>
                 <p>
                     <strong className="text-gray-700">Priority:</strong> {priority}
