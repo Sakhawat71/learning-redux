@@ -48,8 +48,14 @@ const initialState : ITaskState = {
 const taskSlice = createSlice({
     name: 'task',
     initialState,
-    reducers: {},
+    reducers: {
+        addTask: (state, action) => {
+            console.log(action.payload);
+            state.tasks.push(action.payload);
+        }
+    },
 });
 
 export const selectTasks = (state: rootState) => state.todo;
+export const { addTask } = taskSlice.actions;
 export default taskSlice.reducer;
