@@ -40,10 +40,14 @@ const taskSlice = createSlice({
             console.log(action.payload);
             const taskData = createTask(action.payload);
             state.tasks.push(taskData);
+        },
+        toggleCompleteState : (state, action : PayloadAction<string>) => {
+            console.log(action);
         }
     },
 });
 
 export const selectTasks = (state: rootState) => state.todo;
 export const { addTask } = taskSlice.actions;
+export const { toggleCompleteState } = taskSlice.actions;
 export default taskSlice.reducer;

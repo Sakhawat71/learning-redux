@@ -45,8 +45,4 @@ const TaskCard = (task :ITask) => {
     );
 };
 
-TaskCard.propTypes = {
-
-};
-
 export default TaskCard;
