@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import { toggleCompleteState } from "@/redux/features/task/taskSlice";
+import { deleteTask, toggleCompleteState } from "@/redux/features/task/taskSlice";
 import { useAppDispatch } from "@/redux/hook";
 import { ITask } from "@/types";
 
 const TaskCard = (task: ITask) => {
-    const {id, title, description, dueDate, priority, isCompleted } = task;
+    const { id, title, description, dueDate, priority, isCompleted } = task;
     const dispatch = useAppDispatch();
 
     return (
@@ -38,7 +38,7 @@ const TaskCard = (task: ITask) => {
                     {isCompleted ? 'Completed' : 'Mark as Complete'}
                 </button>
                 <button
-                    // onClick={() => onDelete(id)}
+                    onClick={() => dispatch(deleteTask(id as string))}
                     className="px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600"
                 >
                     Delete
