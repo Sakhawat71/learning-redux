@@ -3,14 +3,14 @@ import { ITask } from "@/types";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 interface ITaskState {
-    tasks : ITask[];
-    filter : 'all' | 'high' | 'medium' | 'low';
+    tasks: ITask[];
+    filter: 'all' | 'high' | 'medium' | 'low';
 };
 
 // type DraftTask = Partial<ITask>;
 type DraftTask = Pick<ITask, 'title' | 'description' | 'dueDate' | 'priority'>;
 
-const createTask = (draftTask : DraftTask) : ITask => {
+const createTask = (draftTask: DraftTask): ITask => {
     return {
         id: nanoid(),
         isCompleted: false,
@@ -18,7 +18,7 @@ const createTask = (draftTask : DraftTask) : ITask => {
     };
 };
 
-const initialState : ITaskState = {
+const initialState: ITaskState = {
     tasks: [
         {
             id: 'id-01',
@@ -29,25 +29,28 @@ const initialState : ITaskState = {
             priority: 'medium',
         }
     ],
-    filter : 'all',
+    filter: 'all',
 };
 
 const taskSlice = createSlice({
     name: 'task',
     initialState,
     reducers: {
-        addTask: (state, action : PayloadAction<ITask>) => {
+        addTask: (state, action: PayloadAction<ITask>) => {
             console.log(action.payload);
             const taskData = createTask(action.payload);
             state.tasks.push(taskData);
         },
-        toggleCompleteState : (state, action : PayloadAction<string>) => {
-            console.log(action);
+        toggleCompleteState: (state, action: PayloadAction<string>) => {
+            console.log(action.payload);
+            state.tasks.forEach((task) => task.id === action.payload
+                ? (task.isCompleted = !task.isCompleted)
+                : task
+            )
         }
     },
 });
 
 export const selectTasks = (state: rootState) => state.todo;
-export const { addTask } = taskSlice.actions;
-export const { toggleCompleteState } = taskSlice.actions;
+export const { addTask,toggleCompleteState } = taskSlice.actions;
 export default taskSlice.reducer;

@@ -1,8 +1,11 @@
 import { cn } from "@/lib/utils";
+import { toggleCompleteState } from "@/redux/features/task/taskSlice";
+import { useAppDispatch } from "@/redux/hook";
 import { ITask } from "@/types";
 
-const TaskCard = (task :ITask) => {
-    const { title, description, dueDate, priority, isCompleted } = task;
+const TaskCard = (task: ITask) => {
+    const {id, title, description, dueDate, priority, isCompleted } = task;
+    const dispatch = useAppDispatch();
 
     return (
         <div
@@ -21,14 +24,14 @@ const TaskCard = (task :ITask) => {
                 <p>
                     <strong className="text-gray-700">Priority:</strong> {priority}
                 </p>
-                
+
             </div>
             <div className="flex justify-between">
                 <button
-                    // onClick={() => onComplete(id)}
+                    onClick={() => dispatch(toggleCompleteState(id as string))}
                     className={`px-4 py-2 rounded-lg text-white font-medium ${isCompleted
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-blue-500 hover:bg-blue-600'
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-blue-500 hover:bg-blue-600'
                         }`}
                     disabled={isCompleted}
                 >
