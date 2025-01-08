@@ -9,7 +9,7 @@ const Tasks = () => {
 
     const { tasks } = useAppSelector(selectTasks);
     const dispatch = useAppDispatch();
-    console.log(tasks);
+    // console.log(tasks);
 
     return (
         <div className="max-w-7xl mx-auto border-white border-2 p-4">

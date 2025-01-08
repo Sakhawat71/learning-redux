@@ -1,3 +1,4 @@
+import { rootState } from "@/redux/store";
 import { TUser } from "@/types";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
@@ -6,7 +7,10 @@ type TUserState = {
 }
 
 const initialState: TUserState = {
-    users: []
+    users: [{
+        id : 'hello',
+        name : 'world'
+    }]
 };
 
 type TDraftData = Pick<TUser, 'name'>
@@ -30,6 +34,7 @@ export const userSlice = createSlice({
     }
 });
 
+export const selectUser = (state : rootState) => state.user; 
 export const {
     addUser,
 } = userSlice.actions;
