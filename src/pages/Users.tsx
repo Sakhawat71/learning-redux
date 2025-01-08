@@ -3,12 +3,42 @@ import { useAppSelector } from "@/redux/hook";
 
 const Users = () => {
 
-    const {users} =  useAppSelector(selectUser); 
+    const { users } = useAppSelector(selectUser);
     console.log(users);
 
     return (
-        <div>
-            <h1>Hello World</h1>
+        <div className="container mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-4">User Management</h1>
+
+            <div className="mb-6">
+                <h2 className="text-xl font-semibold mb-2">Add User</h2>
+                <div className="flex gap-2">
+                    <input
+                        type="text"
+                        // value={name}
+                        // onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter user name"
+                        className="border px-3 py-2 rounded w-full"
+                    />
+                    <button
+                        // onClick={handleAddUser}
+                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    >
+                        Add
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <h2 className="text-xl font-semibold mb-2">User List</h2>
+                <ul className="list-disc pl-5 space-y-1">
+                    {users.map((user) => (
+                        <li key={user.id} className="text-gray-700">
+                            {user.name} <span className="text-sm text-gray-500">({user.id})</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };

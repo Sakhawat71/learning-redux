@@ -8,8 +8,8 @@ type TUserState = {
 
 const initialState: TUserState = {
     users: [{
-        id : 'hello',
-        name : 'world'
+        id: 'hello',
+        name: 'world'
     }]
 };
 
@@ -30,11 +30,15 @@ export const userSlice = createSlice({
             const userData = createUser(action.payload);
             state.users.push(userData)
         },
-        // removeUser: () => { },
+        removeUser: (state, action: PayloadAction<string>) => {
+            state.users = state.users.filter(
+                (user) => user.id !== action.payload
+            );
+        },
     }
 });
 
-export const selectUser = (state : rootState) => state.user; 
+export const selectUser = (state: rootState) => state.user;
 export const {
     addUser,
 } = userSlice.actions;
