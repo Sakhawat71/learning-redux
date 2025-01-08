@@ -8,3 +8,8 @@ export interface ITask {
 };
 
 export type TFilter = 'all' | 'high' | 'medium' | 'low';
+
+export type TUser = {
+    id: string;
+    name : string;
+};

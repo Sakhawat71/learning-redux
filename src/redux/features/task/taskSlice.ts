@@ -7,7 +7,7 @@ interface ITaskState {
     filter: 'all' | 'high' | 'medium' | 'low';
 };
 
-// type DraftTask = Partial<ITask>;
+
 type DraftTask = Pick<ITask, 'title' | 'description' | 'dueDate' | 'priority'>;
 
 const createTask = (draftTask: DraftTask): ITask => {
@@ -61,7 +61,6 @@ const taskSlice = createSlice({
 export const selectTasks = (state: rootState) => {
 
     const { filter, tasks } = state.todo;
-
     const filteredTasks =
         filter === 'all' ? tasks : tasks.filter((task) => task.priority === filter);
     return { tasks: filteredTasks };
