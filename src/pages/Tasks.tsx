@@ -42,7 +42,7 @@ const Tasks = () => {
                             onClick={() => dispatch(updateFilter('low'))}
                             value="low"
                         >Low</TabsTrigger>
-                        
+
                     </TabsList>
                 </Tabs>
             </div>

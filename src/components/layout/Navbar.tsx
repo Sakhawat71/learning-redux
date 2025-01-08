@@ -15,6 +15,7 @@ const Navbar = () => {
             <div className="flex items-center mx-auto">
                 <Link to="/" className="ml-5 text-lg font-semibold text-black">Home</Link>
                 <Link to="/counter" className="ml-5 text-lg font-semibold text-black">Counter</Link>
+                <Link to="/users" className="ml-5 text-lg font-semibold text-black">Users</Link>
             </div>
             <div className=" ml-auto" >
                 <ModeToggle />
