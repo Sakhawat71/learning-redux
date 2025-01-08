@@ -1,12 +1,14 @@
 import { AddTaskModal } from "@/components/module/AddTaskModal";
 import TaskCard from "@/components/module/TaskCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { selectTasks } from "@/redux/features/task/taskSlice";
-import { useAppSelector } from "@/redux/hook";
+import { selectTasks, updateFilter } from "@/redux/features/task/taskSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+
 
 const Tasks = () => {
 
     const { tasks } = useAppSelector(selectTasks);
+    const dispatch = useAppDispatch();
     console.log(tasks);
 
     return (
@@ -19,17 +21,34 @@ const Tasks = () => {
 
             <div>
                 <Tabs defaultValue="account" className="w-[400px]">
-                <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="high">High</TabsTrigger>
-                    <TabsTrigger value="medium">Medium</TabsTrigger>
-                    <TabsTrigger value="low">Low</TabsTrigger>
-                </TabsList>
+                    <TabsList defaultValue='all' className="flex w-full grow-0">
+
+                        <TabsTrigger
+                            onClick={() => dispatch(updateFilter('all'))}
+                            value="all"
+                        >All</TabsTrigger>
+
+                        <TabsTrigger
+                            onClick={() => dispatch(updateFilter('high'))}
+                            value="high"
+                        >High</TabsTrigger>
+
+                        <TabsTrigger
+                            onClick={() => dispatch(updateFilter('medium'))}
+                            value="medium"
+                        >Medium</TabsTrigger>
+
+                        <TabsTrigger
+                            onClick={() => dispatch(updateFilter('low'))}
+                            value="low"
+                        >Low</TabsTrigger>
+                        
+                    </TabsList>
                 </Tabs>
             </div>
 
             {
-                tasks.map((task) => (
+                tasks?.map((task) => (
                     <TaskCard key={task.id} {...task} />
                 ))
             }
