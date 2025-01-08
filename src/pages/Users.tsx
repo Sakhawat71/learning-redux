@@ -1,3 +1,4 @@
+import UserCard from "@/components/module/UserCard";
 import { selectUser } from "@/redux/features/user/userSlice";
 import { useAppSelector } from "@/redux/hook";
 
@@ -30,14 +31,9 @@ const Users = () => {
             </div>
 
             <div>
-                <h2 className="text-xl font-semibold mb-2">User List</h2>
-                <ul className="list-disc pl-5 space-y-1">
-                    {users.map((user) => (
-                        <li key={user.id} className="text-gray-700">
-                            {user.name} <span className="text-sm text-gray-500">({user.id})</span>
-                        </li>
-                    ))}
-                </ul>
+                {
+                    users.map((user) => <UserCard key={user.id} {...user} />)
+                }
             </div>
         </div>
     );

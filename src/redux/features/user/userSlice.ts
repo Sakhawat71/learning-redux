@@ -8,7 +8,7 @@ type TUserState = {
 
 const initialState: TUserState = {
     users: [{
-        id: 'hello',
+        id: 'adslhfl',
         name: 'world'
     }]
 };
@@ -41,5 +41,6 @@ export const userSlice = createSlice({
 export const selectUser = (state: rootState) => state.user;
 export const {
     addUser,
+    removeUser,
 } = userSlice.actions;
 export default userSlice.reducer;
