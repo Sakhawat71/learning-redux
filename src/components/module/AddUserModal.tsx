@@ -28,7 +28,7 @@ export function AddUserModal() {
             ...data,
         };
         dispatch(addUser(newUser));
-        reset(); // Clear the form after submission
+        reset(); 
     };
 
     return (

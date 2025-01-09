@@ -12,8 +12,8 @@ const Users = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">User Management</h1>
 
-            <div className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Add User</h2>
+            <div className="mb-6 flex items-center justify-between px-5">
+                <h2 className="text-xl font-semibold mb-2">Users</h2>
                 <AddUserModal />
             </div>
 

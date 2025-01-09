@@ -17,16 +17,17 @@ import { cn } from "@/lib/utils";
 import { Calendar } from "../ui/calendar";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addTask } from "@/redux/features/task/taskSlice";
 import { ITask } from "@/types";
+import { selectUser } from "@/redux/features/user/userSlice";
 
 export function AddTaskModal() {
-
+    const {users} = useAppSelector(selectUser);
+    console.log(users);
     const dispatch = useAppDispatch();
     const form = useForm();
     const onSubmit: SubmitHandler<FieldValues> = (payLoad) => {
-
         console.log(payLoad);
         dispatch(addTask(payLoad as ITask));
     }
@@ -56,7 +57,7 @@ export function AddTaskModal() {
                                     <FormLabel>Title </FormLabel>
                                     <FormControl>
 
-                                        <Input {...field} value={field.value || ""} />
+                                        <Input {...field} required value={field.value || ""} />
 
                                     </FormControl>
                                 </FormItem>
@@ -70,7 +71,32 @@ export function AddTaskModal() {
                                 <FormItem>
                                     <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input {...field} value={field.value || ""} />
+                                        <Input {...field} required value={field.value || ""} />
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="assignTo"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Assign To</FormLabel>
+                                    <FormControl>
+                                        <Select
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                        >
+                                            <SelectTrigger className="w-full">
+                                                <SelectValue placeholder="Select Priority" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {
+                                                    users.map((user) => <SelectItem key={user.id} value={user.id}>{user.name}</SelectItem>)
+                                                }
+                                            </SelectContent>
+                                        </Select>
                                     </FormControl>
                                 </FormItem>
                             )}
@@ -111,7 +137,7 @@ export function AddTaskModal() {
                                                         : null;
                                                     field.onChange(formattedDate);
                                                 }}
-                                                initialFocus
+                                            // initialFocus
                                             />
                                         </PopoverContent>
                                     </Popover>
