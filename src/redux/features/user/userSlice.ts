@@ -4,17 +4,16 @@ import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 type TUserState = {
     users: TUser[];
-}
+};
 
 const initialState: TUserState = {
     users: [{
         id: 'adslhfl',
-        name: 'world'
+        name: 'Mr x'
     }]
 };
 
 type TDraftData = Pick<TUser, 'name'>
-
 const createUser = (data: TDraftData): TUser => {
     return {
         id: nanoid(),

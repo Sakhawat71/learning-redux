@@ -10,7 +10,7 @@ const UserCard = (user: TUser) => {
     return (
         <div
             className={cn(
-                "p-4 border rounded-lg shadow-md transition-transform transform hover:scale-105 m-4 bg-blue-100 flex justify-between items-center"
+                "p-4 border rounded-lg shadow-md transition-transform transform hover:scale-100 m-4 bg-blue-100 flex justify-between items-center"
             )}
         >
             <h3 className="text-xl font-bold text-gray-800">{user?.name}</h3>
