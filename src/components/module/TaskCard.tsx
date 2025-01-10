@@ -1,11 +1,14 @@
 import { cn } from "@/lib/utils";
 import { deleteTask, toggleCompleteState } from "@/redux/features/task/taskSlice";
-import { useAppDispatch } from "@/redux/hook";
+import { selectUser } from "@/redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { ITask } from "@/types";
 
 const TaskCard = (task: ITask) => {
-    const { id, title, description, dueDate, priority, isCompleted } = task;
+    const { id, title, description, dueDate, priority, isCompleted , assignTo} = task;
     const dispatch = useAppDispatch();
+    const {users} = useAppSelector(selectUser)
+    const assignUser = users.find((user) => user.id === assignTo);
 
     return (
         <div
@@ -22,7 +25,8 @@ const TaskCard = (task: ITask) => {
                     <strong className="text-gray-700">Due:</strong> {dueDate}
                 </p>
                 <p>
-                    <strong className="text-gray-700">Assign To:</strong> {task?.assignTo}
+                    <strong className="text-gray-700">Assign To:</strong> {
+                    assignUser ? assignUser.name : 'no one'}
                 </p>
                 <p>
                     <strong className="text-gray-700">Priority:</strong> {priority}
