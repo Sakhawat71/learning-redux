@@ -5,7 +5,7 @@ export interface ITask {
     dueDate?: string;
     isCompleted?: boolean;
     priority: 'high' | 'medium' | 'low';
-    assignTo : string;
+    assignTo : string | null;
 };
 
 export type TFilter = 'all' | 'high' | 'medium' | 'low';

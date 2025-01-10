@@ -21,18 +21,22 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addTask } from "@/redux/features/task/taskSlice";
 import { ITask } from "@/types";
 import { selectUser } from "@/redux/features/user/userSlice";
+import { useState } from "react";
 
 export function AddTaskModal() {
+    const [open, setOpen] = useState(false);
     const { users } = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
     const form = useForm();
+    
     const onSubmit: SubmitHandler<FieldValues> = (payLoad) => {
-        console.log(payLoad);
         dispatch(addTask(payLoad as ITask));
+        setOpen(false);
+        form.reset();
     }
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button variant="outline">Add Task</Button>
             </DialogTrigger>

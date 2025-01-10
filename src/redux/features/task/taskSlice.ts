@@ -8,13 +8,14 @@ interface ITaskState {
 };
 
 
-type DraftTask = Pick<ITask, 'title' | 'description' | 'dueDate' | 'priority'>;
+type DraftTask = Pick<ITask, 'title' | 'description' | 'assignTo' | 'dueDate' | 'priority'>;
 
 const createTask = (draftTask: DraftTask): ITask => {
     return {
+        ...draftTask,
         id: nanoid(),
         isCompleted: false,
-        ...draftTask,
+        assignTo : draftTask.assignTo ? draftTask.assignTo : null
     };
 };
 
@@ -26,6 +27,7 @@ const initialState: ITaskState = {
             description: 'create a new react app',
             dueDate: '2025-01-31',
             isCompleted: false,
+            assignTo : null,
             priority: 'medium',
         }
     ],
