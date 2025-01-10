@@ -23,8 +23,7 @@ import { ITask } from "@/types";
 import { selectUser } from "@/redux/features/user/userSlice";
 
 export function AddTaskModal() {
-    const {users} = useAppSelector(selectUser);
-    console.log(users);
+    const { users } = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
     const form = useForm();
     const onSubmit: SubmitHandler<FieldValues> = (payLoad) => {
@@ -137,7 +136,7 @@ export function AddTaskModal() {
                                                         : null;
                                                     field.onChange(formattedDate);
                                                 }}
-                                            // initialFocus
+                                                initialFocus
                                             />
                                         </PopoverContent>
                                     </Popover>

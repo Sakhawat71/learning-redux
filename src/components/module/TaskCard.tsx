@@ -22,6 +22,9 @@ const TaskCard = (task: ITask) => {
                     <strong className="text-gray-700">Due:</strong> {dueDate}
                 </p>
                 <p>
+                    <strong className="text-gray-700">Assign To:</strong> {task?.assignTo}
+                </p>
+                <p>
                     <strong className="text-gray-700">Priority:</strong> {priority}
                 </p>
 
