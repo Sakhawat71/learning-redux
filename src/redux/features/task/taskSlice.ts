@@ -1,6 +1,7 @@
 import { rootState } from "@/redux/store";
 import { ITask } from "@/types";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import { removeUser } from "../user/userSlice";
 
 interface ITaskState {
     tasks: ITask[];
@@ -15,7 +16,7 @@ const createTask = (draftTask: DraftTask): ITask => {
         ...draftTask,
         id: nanoid(),
         isCompleted: false,
-        assignTo : draftTask.assignTo ? draftTask.assignTo : null
+        assignTo: draftTask.assignTo ? draftTask.assignTo : null
     };
 };
 
@@ -27,7 +28,7 @@ const initialState: ITaskState = {
             description: 'create a new react app',
             dueDate: '2025-01-31',
             isCompleted: false,
-            assignTo : null,
+            assignTo: null,
             priority: 'medium',
         }
     ],
@@ -57,6 +58,11 @@ const taskSlice = createSlice({
         >) => {
             state.filter = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(removeUser, (state, action) => {
+            state.tasks.forEach((task) => task.assignTo == action.payload ? (task.assignTo = null) : task)
+        });
     },
 });
 
