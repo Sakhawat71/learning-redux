@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
  
 export const baseApi = createApi({
     reducerPath: 'baseApi',
@@ -6,6 +7,13 @@ export const baseApi = createApi({
     endpoints: (builder) => ({
         getTasks: builder.query({
             query: () => "/tasks" 
+        }),
+        createTask : builder.mutation({
+            query : (taskData) => ({
+                url : "/tasks",
+                methods : "POST",
+                body : taskData
+            })
         })
     })
 })
