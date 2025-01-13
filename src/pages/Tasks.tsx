@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 const Tasks = () => {
 
     const { data, isLoading, isError } = useGetTasksQuery(undefined);
-    const { tasks } = useAppSelector(selectTasks);
+    // const { tasks } = useAppSelector(selectTasks);
     const dispatch = useAppDispatch();
     console.log(data,isLoading,isError);
 
