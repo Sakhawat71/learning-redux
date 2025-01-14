@@ -8,8 +8,10 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 
 const Tasks = () => {
 
-    const { data, isLoading, isError,refetch } = useGetTasksQuery(undefined,{
-        pollingInterval : 60000
+    const { data, isLoading, isError, refetch } = useGetTasksQuery(undefined, {
+        pollingInterval: 60000,
+        refetchOnMountOrArgChange: true,
+        refetchOnReconnect: true,
     });
     // const { tasks } = useAppSelector(selectTasks);
     const dispatch = useAppDispatch();
